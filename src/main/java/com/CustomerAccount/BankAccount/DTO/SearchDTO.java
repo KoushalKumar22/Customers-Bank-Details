@@ -7,12 +7,14 @@ public class SearchDTO {
     String accNo;
     String fname;
     String lname;
+    String phone;
 
-    public SearchDTO(int id, String accNo, String fname, String lname) {
+    public SearchDTO(int id, String accNo, String fname, String lname, String phone) {
         this.id = id;
         this.accNo = accNo;
         this.fname = fname;
         this.lname = lname;
+        this.phone = phone;
     }
 
     public SearchDTO() {
@@ -48,5 +50,13 @@ public class SearchDTO {
 
     public void setLname(String lname) {
         this.lname = lname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

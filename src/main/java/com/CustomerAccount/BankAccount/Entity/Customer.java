@@ -21,15 +21,19 @@ public class Customer {
     String accNo;
     @Column(name = "FirstName",nullable = false)
     @NotEmpty(message = "Please Provide First Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]$")
+    @Pattern(regexp = "^[A-Z]{1}[a-z]+$")
     String fname;
     @Column(name = "LastName",nullable = false)
     @NotEmpty(message = "Please Provide a Last Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]$")
+    @Pattern(regexp = "^[A-Z]{1}[a-z]+$")
     String lname;
     @Column(name = "Address",nullable = false)
     @NotEmpty(message = "Please Provide An Address!")
     String address;
+    @Column(name = "PhoneNo",unique = true,nullable = false)
+    @NotEmpty(message = "Please Enter an Phone Number!")
+    @Pattern(regexp = "^[6-9]{1}[0-9]{9}$",message = "Please Enter An Valid Phone Number!")
+    String phone;
 
 //    @CreationTimestamp
     LocalDateTime openingDate;
@@ -39,12 +43,14 @@ public class Customer {
         this.openingDate=LocalDateTime.now();
         this.maturityDate=this.openingDate.plusYears(10);
     }
-    public Customer(int id, String accNo, String fname, String lname, String address, LocalDateTime openingDate, LocalDateTime maturityDate) {
+
+    public Customer(int id, String accNo, String fname, String lname, String address, String phone, LocalDateTime openingDate, LocalDateTime maturityDate) {
         this.id = id;
         this.accNo = accNo;
         this.fname = fname;
         this.lname = lname;
         this.address = address;
+        this.phone = phone;
         this.openingDate = openingDate;
         this.maturityDate = maturityDate;
     }
@@ -103,5 +109,13 @@ public class Customer {
 
     public void setMaturityDate(LocalDateTime maturityDate) {
         this.maturityDate = maturityDate;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

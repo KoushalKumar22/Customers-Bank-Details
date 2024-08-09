@@ -26,6 +26,11 @@ public class CustomerDTO {
     @Column(name = "Address",nullable = false)
     @NotEmpty(message = "Please Provide An Address!")
     String address;
+
+    @Column(name = "PhoneNo",unique = true,nullable = false)
+    @NotEmpty(message = "Please Enter an Phone Number!")
+    @Pattern(regexp = "^[6-9]{1}[0-9]{9}$",message = "Please Enter An Valid Phone Number!")
+    String phone;
     LocalDateTime openingDate;
     LocalDateTime maturityDate;
     public CustomerDTO(){
@@ -33,12 +38,13 @@ public class CustomerDTO {
         this.maturityDate=this.openingDate.plusYears(10);
     }
 
-    public CustomerDTO(int id, String accNo, String fname, String lname, String address, LocalDateTime openingDate, LocalDateTime maturityDate) {
+    public CustomerDTO(int id, String accNo, String fname, String lname, String address, String phone, LocalDateTime openingDate, LocalDateTime maturityDate) {
         this.id = id;
         this.accNo = accNo;
         this.fname = fname;
         this.lname = lname;
         this.address = address;
+        this.phone = phone;
         this.openingDate = openingDate;
         this.maturityDate = maturityDate;
     }
@@ -97,5 +103,13 @@ public class CustomerDTO {
 
     public void setMaturityDate(LocalDateTime maturityDate) {
         this.maturityDate = maturityDate;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
