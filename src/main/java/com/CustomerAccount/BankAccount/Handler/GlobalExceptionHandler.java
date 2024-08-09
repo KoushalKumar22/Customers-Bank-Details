@@ -1,5 +1,6 @@
 package com.CustomerAccount.BankAccount.Handler;
 
+import com.CustomerAccount.BankAccount.Exceptions.AccountNotFoundException;
 import com.CustomerAccount.BankAccount.Exceptions.IdNotFoundException;
 import com.CustomerAccount.BankAccount.Exceptions.NameNotFoundException;
 import org.apache.coyote.Response;
@@ -62,6 +63,10 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(NameNotFoundException.class)
     public ResponseEntity<Object> handleNameNotFoundException(NameNotFoundException exception){
+        return new ResponseEntity<>(exception.getMessage(),HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<Object> handleAccountNotFoundException(AccountNotFoundException exception){
         return new ResponseEntity<>(exception.getMessage(),HttpStatus.NOT_FOUND);
     }
 }
