@@ -9,30 +9,14 @@ import org.springframework.cglib.core.Local;
 import java.time.LocalDateTime;
 
 public class CustomerDTO {
-    @Column(name = "ID",nullable = false,unique = true)
-    int id;
-    @Column(name = "AccountNo",unique = true)
-    @NotNull(message = "Please Enter The Bank Account No!")
-    @Pattern(regexp = "^[0-9]{9,18}$",message = "Please Enter An Valid Account Number!")
-    String accNo;
-    @Column(name = "FirstName",nullable = false)
-    @NotEmpty(message = "Please Provide First Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]$")
-    String fname;
-    @Column(name = "LastName",nullable = false)
-    @NotEmpty(message = "Please Provide a Last Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]$")
-    String lname;
-    @Column(name = "Address",nullable = false)
-    @NotEmpty(message = "Please Provide An Address!")
-    String address;
-
-    @Column(name = "PhoneNo",unique = true,nullable = false)
-    @NotEmpty(message = "Please Enter an Phone Number!")
-    @Pattern(regexp = "^[6-9]{1}[0-9]{9}$",message = "Please Enter An Valid Phone Number!")
-    String phone;
-    LocalDateTime openingDate;
-    LocalDateTime maturityDate;
+    private int id;
+    private String accNo;
+    private String fname;
+    private String lname;
+    private String address;
+    private String phone;
+    private LocalDateTime openingDate;
+    private LocalDateTime maturityDate;
     public CustomerDTO(){
         this.openingDate=LocalDateTime.now();
         this.maturityDate=this.openingDate.plusYears(10);

@@ -2,10 +2,13 @@ package com.CustomerAccount.BankAccount.Configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class CustomerConfiguration {
     @Bean
-    ModelMapper myModel(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 }
+

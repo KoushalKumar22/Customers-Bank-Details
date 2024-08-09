@@ -3,6 +3,7 @@ package com.CustomerAccount.BankAccount.Services;
 import com.CustomerAccount.BankAccount.DTO.CustomerDTO;
 import com.CustomerAccount.BankAccount.DTO.SearchDTO;
 import com.CustomerAccount.BankAccount.Entity.Customer;
+import com.CustomerAccount.BankAccount.Exceptions.IdNotFoundException;
 import com.CustomerAccount.BankAccount.Repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ public class CustomerServices implements ServicesInter{
     ModelMapper mapper;
 
     @Override
-    public CustomerDTO saveCustomer(CustomerDTO customerDTO){
+    public String saveCustomer(CustomerDTO customerDTO){
         Customer customer=new Customer();
         mapper.map(customerDTO, customer);
         customerRepository.save(customer);
-        return customerDTO;
+        return "Data Saved!";
     }
     @Override
     public List<CustomerDTO> findAll(){
@@ -35,17 +36,17 @@ public class CustomerServices implements ServicesInter{
     }
 
     @Override
-    public SearchDTO findById(int id){
-        Optional<Customer>  customer=customerRepository.findById(id);
-        return customer.map(customer1 -> mapper.map(customer1, SearchDTO.class))
-                .orElse(null);
+    public SearchDTO findById(int id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new IdNotFoundException("Customer not found with ID " + id));
+        return mapper.map(customer, SearchDTO.class);
     }
     @Override
-    public List<SearchDTO> findByName(String fname){
-        return customerRepository.findByName(fname);
+    public List<SearchDTO> findByfname(String fname){
+        return customerRepository.findByfname(fname);
     }
     @Override
-    public List<CustomerDTO> findByAccNo(String accNo){
-        return customerRepository.findByAccNo(accNo);
+    public List<CustomerDTO> findByaccNo(String accNo){
+        return customerRepository.findByaccNo(accNo);
     }
 }

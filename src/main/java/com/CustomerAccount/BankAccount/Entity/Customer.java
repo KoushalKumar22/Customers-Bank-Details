@@ -21,11 +21,9 @@ public class Customer {
     String accNo;
     @Column(name = "FirstName",nullable = false)
     @NotEmpty(message = "Please Provide First Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]+$")
     String fname;
     @Column(name = "LastName",nullable = false)
     @NotEmpty(message = "Please Provide a Last Name!")
-    @Pattern(regexp = "^[A-Z]{1}[a-z]+$")
     String lname;
     @Column(name = "Address",nullable = false)
     @NotEmpty(message = "Please Provide An Address!")

@@ -4,14 +4,12 @@ import jakarta.persistence.Column;
 
 public class SearchDTO {
     int id;
-    String accNo;
     String fname;
     String lname;
     String phone;
 
-    public SearchDTO(int id, String accNo, String fname, String lname, String phone) {
+    public SearchDTO(int id, String fname, String lname, String phone) {
         this.id = id;
-        this.accNo = accNo;
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
@@ -26,14 +24,6 @@ public class SearchDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAccNo() {
-        return accNo;
-    }
-
-    public void setAccNo(String accNo) {
-        this.accNo = accNo;
     }
 
     public String getFname() {
